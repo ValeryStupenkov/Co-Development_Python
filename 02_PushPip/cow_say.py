@@ -15,10 +15,10 @@ parser.add_argument('-t', action='store_true')
 parser.add_argument('-w', action='store_true')
 parser.add_argument('-y', action='store_true')
 parser.add_argument("-W", type=int)
-parser.add_argument("message", type=str)
+parser.add_argument("-l", action='store_true')
+parser.add_argument("message", nargs='?', default=None)
 
 args = parser.parse_args()
-print(vars(args))
 dict_args = {}
 
 if args.e:
@@ -47,6 +47,10 @@ if args.w:
 if args.y:
     dict_args['preset'] = "y"
 
+if args.l:
+    print(list_cows())
 
 dict_args["message"] = args.message
-print(cowsay(**dict_args))
+
+if args.message is not None and not args.l:
+    print(cowsay(**dict_args))
