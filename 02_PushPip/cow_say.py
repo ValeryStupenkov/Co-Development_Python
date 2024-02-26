@@ -5,6 +5,7 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("-e", type=str)
 parser.add_argument("-f", type=str)
+parser.add_argument("-T", type=str)
 parser.add_argument("message", type=str)
 
 args = parser.parse_args()
@@ -15,6 +16,8 @@ if args.e:
     dict_args["eyes"] = args.e[:2]
 if args.f:
     dict_args["cowfile"] = args.f
+if args.T:
+    dict_args["tongue"] = args.T
 
 dict_args["message"] = args.message
 print(cowsay(**dict_args))
