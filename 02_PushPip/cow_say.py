@@ -14,6 +14,7 @@ parser.add_argument('-s', action='store_true')
 parser.add_argument('-t', action='store_true')
 parser.add_argument('-w', action='store_true')
 parser.add_argument('-y', action='store_true')
+parser.add_argument("-W", type=int)
 parser.add_argument("message", type=str)
 
 args = parser.parse_args()
@@ -26,6 +27,8 @@ if args.f:
     dict_args["cowfile"] = args.f
 if args.T:
     dict_args["tongue"] = args.T
+if args.W:
+    dict_args["width"] = args.W
 
 if args.b:
     dict_args['preset'] = "b"
