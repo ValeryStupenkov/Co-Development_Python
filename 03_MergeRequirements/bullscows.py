@@ -3,7 +3,7 @@ from os.path import isfile
 from urllib.request import urlopen
 from collections import Counter
 from random import choice
-
+from cowsay import cowsay, list_cows
 
 def bullscows(guess: str, secret: str) -> (int, int):
     bulls = sum(map(str.__eq__, guess, secret))
@@ -24,8 +24,9 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
     return attempt
 
 def ask(prompt: str, valid: list[str] = None) -> str:
+    cowprompt = cowsay(prompt, cow=choice(list_cows())) + '\n'
     while True:
-        word = input(prompt) 
+        word = input(cowprompt) 
         if valid and word in valid:
               break
         
@@ -33,7 +34,8 @@ def ask(prompt: str, valid: list[str] = None) -> str:
     
 
 def inform(format_string: str, bulls: int, cows: int) -> None:
-    print(format_string.format(bulls, cows))
+    cowinform = cowsay(format_string.format(bulls, cows), cow=choice(list_cows())) + '\n'
+    print(cowinform)
 
 parser = argparse.ArgumentParser()
 
