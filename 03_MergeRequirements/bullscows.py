@@ -24,7 +24,7 @@ def gameplay(ask: callable, inform: callable, words: list[str]) -> int:
     return attempt
 
 def ask(prompt: str, valid: list[str] = None) -> str:
-    cowprompt = cowsay(prompt, cow=choice(list_cows())) + '\n'
+    cowprompt = cowsay(prompt, cowfile=mycow) + '\n'
     while True:
         word = input(cowprompt) 
         if valid and word in valid:
@@ -36,6 +36,9 @@ def ask(prompt: str, valid: list[str] = None) -> str:
 def inform(format_string: str, bulls: int, cows: int) -> None:
     cowinform = cowsay(format_string.format(bulls, cows), cow=choice(list_cows())) + '\n'
     print(cowinform)
+
+with open("mycow.txt", 'r', encoding="UTF-8") as f:
+      mycow = f.read()
 
 parser = argparse.ArgumentParser()
 
