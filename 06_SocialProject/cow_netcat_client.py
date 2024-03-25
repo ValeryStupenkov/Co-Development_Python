@@ -9,6 +9,8 @@ import pyreadline3
 readline = pyreadline3.Readline()
 
 class NetcatClient(cmd.Cmd):
+    prompt = '>> '
+
     def __init__(self, socket, locker):
         super().__init__()
         self.socket = socket
@@ -76,7 +78,7 @@ class NetcatClient(cmd.Cmd):
                 msg = self.receive(timeout=0)
                 if msg:
                     print(msg.strip())
-                    print(f"{self.prompt}{readline.get_line_buffer()}", end="", flush=True)
+                    print(f"{self.prompt}{readline.get_line_buffer()}", end="\n", flush=True)
 
 
 if __name__ == '__main__':
